@@ -39,6 +39,10 @@ import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import client from "../../client";
 import CreateTag from "./CreateTag";
+import { useMsal } from "@azure/msal-react";
+import { useRouter } from "next/router";
+import { setCookie } from "cookies-next";
+import { loginRequest } from "../../authConfig";
 
 type props = {
   idLink?: number;
@@ -49,6 +53,7 @@ type props = {
 
 const EditForm = ({ idLink, onClose, onSubmit, idUser }: props) => {
   const toast = useToast();
+  const router = useRouter();
   const createTagDisclosure = useDisclosure();
 
   const supabaseLink = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -83,6 +88,46 @@ const EditForm = ({ idLink, onClose, onSubmit, idUser }: props) => {
       setSelectedTags(new Set(data?.data?.tags.map((tag) => tag?.Tag?.idTag)));
     }
   }, [data]);
+  const { instance } = useMsal();
+  const handleLogin = async () => {
+    try {
+      await instance.initialize();
+      const loginResponse = await instance.loginPopup(loginRequest);
+      if (loginResponse?.account?.username) {
+        instance.setActiveAccount(loginResponse.account);
+        const user = await client.post("/User/getUserByEmail", {
+          email: loginResponse.account.username,
+        });
+        if (user.status === 200) {
+          if (user.data) {
+            setCookie("RoboLinks", user.data.idUser);
+            router.reload();
+          } else {
+            router.push(
+              {
+                pathname: "/register",
+                query: { email: loginResponse.account.username },
+              },
+              "/register"
+            );
+          }
+        } else {
+          toast({
+            title: "Error.",
+            description: "Something went wrong.",
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+          });
+          //sessionStorage.removeItem("msal.interaction.status");
+        }
+      }
+    } catch (e) {
+      console.error(e);
+      //sessionStorage.removeItem("msal.interaction.status");
+    }
+  };
+
   return (
     <>
       <ModalContent minW="60%" minH="40%">
@@ -394,9 +439,16 @@ const EditForm = ({ idLink, onClose, onSubmit, idUser }: props) => {
                     You need an active session to create a link. Please login or
                     register
                   </Code>
-                  <Link href="/login">
-                    <Button>Login</Button>
-                  </Link>
+                  <Button onClick={handleLogin}>
+                    <Image
+                      src="https://cdn-icons-png.flaticon.com/512/732/732221.png"
+                      alt="Microsoft Logo"
+                      boxSize={"22px"}
+                      maxBlockSize={"22px"}
+                      maxInlineSize={"22px"}
+                    />
+                    <Text m="2%">Sign in or Register. (@tec.mx)</Text>
+                  </Button>
                 </VStack>
               </Flex>
             </>
