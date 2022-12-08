@@ -10,13 +10,13 @@ import {
   Heading,
   useToast,
 } from "@chakra-ui/react";
-import { TopNavBar } from "../components/Layout/TopNavBar";
+import { TopNavBar } from "../../components/Layout/TopNavBar";
 import { isMobile } from "react-device-detect";
 import { useRouter } from "next/router";
 import { Formik, Form, Field } from "formik";
 import { useEffect, useState } from "react";
-import client from "../client";
-import { supabase } from "../supabase";
+import client from "../../client";
+import { supabase } from "../../supabase";
 import { setCookie } from "cookies-next";
 
 const Register = () => {

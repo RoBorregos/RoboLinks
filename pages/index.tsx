@@ -6,13 +6,18 @@ import { isMobile } from "react-device-detect";
 import { TopNavBar } from "../components/Layout/TopNavBar";
 import LinkStack from "../components/Link/linkStack";
 import SearchBar from "../components/Searcher/SearchBar";
+import { useMsal } from "@azure/msal-react";
+import MSALButton from "../components/MSAL/MSALButton";
 // idea https://excalidraw.com/#json=myQ7PbofUoi1ufoU6SZ65,jLB2YW1xcTTW4qktRK4V1w
 
 export default function Home() {
   const [search, setSearch] = useState("");
   const [tags, setTags] = useState([]);
   const [idUser, setIdUser] = useState(null);
+  const { instance, accounts } = useMsal();
+
   useEffect(() => {
+    console.log("accounts start", accounts);
     if (hasCookie("RoboLinks")) {
       const cookies = getCookie("RoboLinks");
       setIdUser(cookies);
@@ -38,6 +43,7 @@ export default function Home() {
           backdropBlur={"sm"}
           opacity={0}
         ></Container>
+        <MSALButton />
       </VStack>
       <VStack m="2%">
         <SearchBar

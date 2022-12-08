@@ -42,7 +42,7 @@ export const TopRight = () => {
           } else {
             router.push(
               {
-                pathname: "/register",
+                pathname: "/userAuth/register",
                 query: { email: loginResponse.account.username },
               },
               "/register"

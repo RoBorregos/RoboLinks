@@ -2,6 +2,7 @@ export const msalConfig = {
   auth: {
     clientId: process.env.NEXT_PUBLIC_MSAL_APLICATION_ID,
     authority: `https://login.microsoftonline.com/${process.env.NEXT_PUBLIC_MSAL_TENANT_ID}`, // This is a URL (e.g. https://login.microsoftonline.com/{your tenant ID})
+    redirectUri: "http://localhost:3000", // FIXME: change url
   },
   cache: {
     cacheLocation: "sessionStorage", // This configures where your cache will be stored
