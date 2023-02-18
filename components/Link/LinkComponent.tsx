@@ -24,7 +24,7 @@ export const LinkComponent = ({ idLink, idUser }) => {
   const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
   // fetch if on screen
-  const ref = useRef();
+  const ref = useRef<HTMLInputElement>(null);
   const onScreen = useOnScreen(ref);
 
   const { data, isLoading, isError } = useQuery(

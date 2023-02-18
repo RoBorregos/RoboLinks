@@ -51,8 +51,8 @@ const EditForm = ({ idLink, onClose, onSubmit, idUser }: props) => {
   const toast = useToast();
   const createTagDisclosure = useDisclosure();
 
-  const supabaseLink = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY;
+  const supabaseLink = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY ?? "";
   const supabase = createClient(supabaseLink, supabaseKey);
   const [selectedTags, setSelectedTags] = useState(new Set() as Set<number>);
   const [isSelected, setIsSelected] = useState({});
@@ -175,6 +175,7 @@ const EditForm = ({ idLink, onClose, onSubmit, idUser }: props) => {
                           name="file"
                           accept="image/*"
                           onChange={async (e) => {
+                            if (e.target.files == null) return;
                             const file = e.target.files[0];
                             const reader = new FileReader();
                             reader.readAsDataURL(file);

@@ -31,7 +31,7 @@ const CreateTag = ({ onClose }) => {
   const [tagName, setTagName] = useState("");
   const [tagColor, setTagColor] = useState("gray");
   const { mutate } = useMutation(
-    () => {
+    async () => {
       if (!tagName) return;
       return client.post("/Tag/createTag", {
         tagName: tagName,
