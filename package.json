@@ -15,7 +15,11 @@
     "@emotion/styled": "^11.10.0",
     "@prisma/client": "^4.3.1",
     "@supabase/supabase-js": "^1.35.6",
-    "@tanstack/react-query": "^4.2.3",
+    "@tanstack/react-query": "^4.24.6",
+    "@trpc/client": "^10.11.1",
+    "@trpc/next": "^10.11.1",
+    "@trpc/react-query": "^10.11.1",
+    "@trpc/server": "^10.11.1",
     "@types/next": "^9.0.0",
     "@types/node": "^18.7.13",
     "@types/react": "^18.0.17",
@@ -31,7 +35,8 @@
     "react-ip-details": "^1.2.6",
     "react-qrcode-logo": "^2.8.0",
     "victory": "^36.6.7",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "zod": "^3.20.6"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
