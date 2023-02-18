@@ -12,7 +12,7 @@ import { trpc } from "../utils/trpc";
 export default function Home() {
   const [search, setSearch] = useState("");
   const [tags, setTags] = useState([]);
-  const [idUser, setIdUser] = useState(null);
+  const [idUser, setIdUser] = useState(null as any);
   useEffect(() => {
     if (hasCookie("RoboLinks")) {
       const cookies = getCookie("RoboLinks");
