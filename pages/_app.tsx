@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/react";
 import { theme } from "../styles/theme";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { trpc } from "../utils/trpc";
+import { api } from "../utils/trpc";
 
 const queryClient = new QueryClient();
 
@@ -22,4 +22,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default trpc.withTRPC(MyApp);
+export default api.withTRPC(MyApp);

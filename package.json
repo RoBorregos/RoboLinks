@@ -34,6 +34,7 @@
     "react-icons": "^4.4.0",
     "react-ip-details": "^1.2.6",
     "react-qrcode-logo": "^2.8.0",
+    "superjson": "^1.12.2",
     "victory": "^36.6.7",
     "yup": "^0.32.11",
     "zod": "^3.20.6"
