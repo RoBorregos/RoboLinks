@@ -24,8 +24,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       destination: url,
       permanent: true,
     },
-    then(onfulfilled, onrejected) {
-      client.post("/Visit/createVisit", {
+    async then(onfulfilled, onrejected) {
+      await client.post("/Visit/createVisit", {
         ip: ip,
         idLink: idLink,
       });
