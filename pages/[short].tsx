@@ -12,20 +12,23 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       notFound: true,
     };
   }
+  const url = response?.data?.url;
+  const idLink = response?.data?.idLink;
+
   const ip =
     context?.req?.headers?.["x-forwarded-for"] ||
     context?.req?.socket?.remoteAddress ||
     null;
-  const url = response?.data?.url;
-  const idLink = response?.data?.idLink;
-  await client.post("/Visit/createVisit", {
-    ip: ip,
-    idLink: idLink,
-  });
   return {
     redirect: {
       destination: url,
       permanent: true,
+    },
+    then(onfulfilled, onrejected) {
+      client.post("/Visit/createVisit", {
+        ip: ip,
+        idLink: idLink,
+      });
     },
   };
 };
