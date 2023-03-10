@@ -7,7 +7,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   String(short).replaceAll("%20", " ");
   const response = await client.get(`/Link/getByShort?short=${short}`);
   if (response.data.error != null) {
-    console.log("error");
+    console.log("error", response.data.error);
     return {
       notFound: true,
     };
@@ -18,7 +18,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     null;
   const url = response?.data?.url;
   const idLink = response?.data?.idLink;
-  client.post("/Visit/createVisit", {
+  await client.post("/Visit/createVisit", {
     ip: ip,
     idLink: idLink,
   });
