@@ -9,7 +9,7 @@ export const TopNavBar = () => {
 
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>RoboLinks</title>
         <meta
           name="description"
@@ -19,13 +19,22 @@ export const TopNavBar = () => {
         <meta
           name="keywords"
           content="Links Shortener RoBorregos RoboLinks"
-          property="keywords"
+          property="keywTopRightords"
         />
         <meta name="author" content="RoBorregos" property="author" />
         <meta name="image" content="./favicon.ico" property="image" />
         <link rel="icon" href="./favicon.ico" />
-      </Head>
-      <Flex
+      </Head> */}
+      <div className="flex fixed w-screen align-middle items-center p-4 justify-between text-white bg-gray-800">
+        <img className="alt-logo max-h-12 min-h-12 min-w-12 opacity-150 cursor-pointer"
+          src="https://bfmvwivyerrefrhrlmxx.supabase.co/storage/v1/object/public/imagenes/Logo_blanco.png" />
+        <div className="text-4xl font-bold">
+          <p>RoboLinks</p>
+        </div>
+        <TopRight />
+      </div>
+      
+      {/* <Flex
         minW="100%"
         align={"center"}
         wrap="wrap"
@@ -56,7 +65,7 @@ export const TopNavBar = () => {
           </Heading>
           <TopRight />
         </HStack>
-      </Flex>
+      </Flex> */}
     </>
   );
 };
