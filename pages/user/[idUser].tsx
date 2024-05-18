@@ -134,6 +134,7 @@ const UserPage = () => {
                       name="file"
                       accept="image/*"
                       onChange={async (e) => {
+                        if (!e.target.files) return;
                         const file = e.target.files[0];
                         const reader = new FileReader();
                         reader.readAsDataURL(file);

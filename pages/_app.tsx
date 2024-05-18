@@ -1,3 +1,4 @@
+import type { AppProps } from "next/app";
 import "../styles/globals.css";
 import {
   ChakraProvider,
@@ -6,10 +7,11 @@ import {
 } from "@chakra-ui/react";
 import { theme } from "../styles/theme";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { api } from "../utils/trpc";
 
 const queryClient = new QueryClient();
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <ChakraProvider theme={theme}>
@@ -20,4 +22,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+export default api.withTRPC(MyApp);

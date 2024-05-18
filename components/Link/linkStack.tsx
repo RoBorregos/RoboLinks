@@ -34,10 +34,12 @@ const LinkStack = ({ search, tags, idUser }) => {
     setCols(Math.floor(cols2));
   }, []);
 
-  const chunk = (arr, size) =>
-    Array.from({ length: Math.ceil(arr?.length / size) }, (v, i) =>
-      arr.slice(i * size, i * size + size)
+  const chunk = (arr, size) => {
+    return Array.from(
+      { length: Math.ceil(arr?.length / Math.max(0, size)) },
+      (v, i) => arr.slice(i * size, i * size + size)
     );
+  };
   const chunkedData = chunk(data?.data, isMobile ? 1 : cols);
 
   return (
