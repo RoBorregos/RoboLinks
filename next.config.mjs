@@ -1,3 +1,7 @@
+
+
+await import("./utils/env.mjs");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -13,4 +17,5 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
 };
-module.exports = nextConfig;
+
+export default nextConfig;

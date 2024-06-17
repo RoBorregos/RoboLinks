@@ -17,6 +17,8 @@
  */
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 
+import { getServerAuthSession } from "rbgs/server/auth";
+
 import { prisma } from "../db";
 
 type CreateContextOptions = Record<string, never>;

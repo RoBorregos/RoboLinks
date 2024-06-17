@@ -9,16 +9,20 @@ import { theme } from "../styles/theme";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { api } from "../utils/trpc";
 
+import { SessionProvider } from "next-auth/react";
+
 const queryClient = new QueryClient();
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ChakraProvider theme={theme}>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-        <Component {...pageProps} />
-      </ChakraProvider>
-    </QueryClientProvider>
+    <SessionProvider session={session}>
+      <QueryClientProvider client={queryClient}>
+        <ChakraProvider theme={theme}>
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+          <Component {...pageProps} />
+        </ChakraProvider>
+      </QueryClientProvider>
+    </SessionProvider>
   );
 }
 
