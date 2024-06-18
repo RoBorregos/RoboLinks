@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import client from "../../client";
+import client from "../../utils/client";
 import EditForm from "./EditForm";
 import { useState, useEffect, useRef } from "react";
 

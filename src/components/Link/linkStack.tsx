@@ -2,7 +2,7 @@ import { HStack, Spinner, Text, VStack } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { isMobile } from "react-device-detect";
-import client from "../../client";
+import client from "../../utils/client";
 import { LinkComponent } from "./LinkComponent";
 
 const LinkStack = ({ search, tags, idUser }) => {

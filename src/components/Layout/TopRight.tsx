@@ -12,7 +12,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { deleteCookie, getCookie } from "cookies-next";
 import { useRouter } from "next/router";
-import client from "../../client";
+import client from "../../utils/client";
 import { ColorModeSwitcher } from "../ColorModeSwitcher";
 
 export const TopRight = () => {

@@ -17,9 +17,9 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import { isMobile } from "react-device-detect";
 import * as Yup from "yup";
-import client from "../client";
-import { TopNavBar } from "../components/Layout/TopNavBar";
-import { supabase } from "../supabase";
+import client from "rbrgs/utils/client";
+import { TopNavBar } from "rbrgs/components/Layout/TopNavBar";
+import { supabase } from "../utils/supabase";
 
 const LogInValidationSchema = Yup.object().shape({
   usernameOrEmail: Yup.string().required("Username or email is required"),

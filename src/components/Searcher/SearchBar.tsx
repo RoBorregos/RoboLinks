@@ -19,7 +19,7 @@ import {
 } from "@chakra-ui/react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import client from "../../client";
+import client from "../../utils/client";
 import EditForm from "../Link/EditForm";
 
 const SearchBar = ({ setSearch, setTags, search, idUser }) => {

@@ -3,10 +3,10 @@ import { getCookie, hasCookie } from "cookies-next";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { isMobile } from "react-device-detect";
-import { TopNavBar } from "../components/Layout/TopNavBar";
-import LinkStack from "../components/Link/linkStack";
-import SearchBar from "../components/Searcher/SearchBar";
-import { api } from "../utils/trpc";
+import { TopNavBar } from "rbrgs/components/Layout/TopNavBar";
+import LinkStack from "rbrgs/components/Link/linkStack";
+import SearchBar from "rbrgs/components/Searcher/SearchBar";
+import { api } from "rbrgs/utils/trpc";
 // idea https://excalidraw.com/#json=myQ7PbofUoi1ufoU6SZ65,jLB2YW1xcTTW4qktRK4V1w
 
 export default function Home() {

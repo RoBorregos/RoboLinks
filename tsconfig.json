@@ -14,7 +14,10 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "moduleResolution": "node",
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "paths": {
+      "rbrgs/*": ["./src/*"]
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

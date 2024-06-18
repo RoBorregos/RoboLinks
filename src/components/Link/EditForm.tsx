@@ -37,7 +37,7 @@ import { Field, Form, Formik } from "formik";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import * as Yup from "yup";
-import client from "../../client";
+import client from "../../utils/client";
 import CreateTag from "./CreateTag";
 
 type props = {

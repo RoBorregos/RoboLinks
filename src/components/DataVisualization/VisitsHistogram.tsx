@@ -2,7 +2,7 @@ import { Box, Container, HStack } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { VictoryPie } from "victory";
-import client from "../../client";
+import client from "../../utils/client";
 
 const VisitsHistogram = ({ idLink }) => {
   const { data, isLoading, isError } = useQuery(

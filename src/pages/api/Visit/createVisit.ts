@@ -1,6 +1,6 @@
 import { prisma } from "../_db";
 import { NextApiRequest, NextApiResponse } from "next";
-import client from "../../../client";
+import client from "rbrgs/utils/client";
 
 const createVisit = async (req: NextApiRequest, res: NextApiResponse) => {
   const { idLink, ip } = req.body;

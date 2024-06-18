@@ -18,10 +18,10 @@ import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { isMobile } from "react-device-detect";
-import client from "../../client";
-import VisitsDateHistogram from "../../components/DataVisualization/VisitsByDateHistogram";
-import VisitsHistogram from "../../components/DataVisualization/VisitsHistogram";
-import { TopNavBar } from "../../components/Layout/TopNavBar";
+import client from "rbrgs/utils/client";
+import VisitsDateHistogram from "rbrgs/components/DataVisualization/VisitsByDateHistogram";
+import VisitsHistogram from "rbrgs/components/DataVisualization/VisitsHistogram";
+import { TopNavBar } from "rbrgs/components/Layout/TopNavBar";
 import { QRCode } from "react-qrcode-logo";
 
 const LinkPage = () => {

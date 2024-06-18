@@ -22,10 +22,10 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { isMobile } from "react-device-detect";
 import * as Yup from "yup";
-import client from "../../client";
-import { TopNavBar } from "../../components/Layout/TopNavBar";
-import { LinkComponent } from "../../components/Link/LinkComponent";
-import { supabase } from "../../supabase";
+import client from "rbrgs/utils/client";
+import { TopNavBar } from "rbrgs/components/Layout/TopNavBar";
+import { LinkComponent } from "rbrgs/components/Link/LinkComponent";
+import { supabase } from "rbrgs/utils/supabase";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required("Username is required"),

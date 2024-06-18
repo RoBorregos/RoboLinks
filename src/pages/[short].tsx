@@ -2,7 +2,7 @@ import { Spinner } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import client from "../client";
+import client from "rbrgs/utils/client";
 import { GetServerSideProps } from "next";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
