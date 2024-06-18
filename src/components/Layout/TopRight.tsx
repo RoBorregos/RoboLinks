@@ -31,7 +31,7 @@ export const TopRight = () => {
               color="white"
             />
           </MenuButton>
-          {session.data ? (
+          {session.data && false? (
             <MenuList>
               <MenuItem
                 onClick={() => {
