@@ -9,24 +9,18 @@ import {
   MenuList,
   Text,
 } from "@chakra-ui/react";
-import { useQuery } from "@tanstack/react-query";
-import { deleteCookie, getCookie } from "cookies-next";
 import { useRouter } from "next/router";
-import client from "../../utils/client";
 import { ColorModeSwitcher } from "../ColorModeSwitcher";
+import { signOut, useSession } from "next-auth/react";
 
 export const TopRight = () => {
   const router = useRouter();
-  const idUser = getCookie("RoboLinks");
-
-  const { data, isLoading, isError } = useQuery(["user"], async () => {
-    const { data } = await client.get("/User/getUser?idUser=" + idUser);
-    return data;
-  });
+  const session = useSession();
+  
   return (
     <>
       <HStack>
-        <Avatar src={data?.picUrl ?? ""} name={data?.username ?? ""} />
+        <Avatar src={session.data?.user?.image ?? ""} name={session.data?.user?.name ?? ""} />
         <ColorModeSwitcher />
         <Menu>
           <MenuButton>
@@ -37,19 +31,18 @@ export const TopRight = () => {
               color="white"
             />
           </MenuButton>
-          {idUser ? (
+          {session.data ? (
             <MenuList>
               <MenuItem
                 onClick={() => {
-                  router.push("/user/" + idUser);
+                  router.push("/user/" + session.data.user.id);
                 }}
               >
                 <Text>Profile</Text>
               </MenuItem>
               <MenuItem
                 onClick={() => {
-                  deleteCookie("RoboLinks");
-                  router.push("/login");
+                  void signOut()
                 }}
               >
                 <Text>Sign Out</Text>

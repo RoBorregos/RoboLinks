@@ -3,11 +3,14 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { TopRight } from "./TopRight";
 
+import { signIn, useSession } from "next-auth/react";
+
 export const TopNavBar = () => {
   const router = useRouter();
   const { colorMode } = useColorMode();
+  const session = useSession();
 
-  return (
+  return (  
     <>
       {/* <Head>
         <title>RoboLinks</title>
@@ -31,7 +34,17 @@ export const TopNavBar = () => {
         <div className="text-4xl font-bold">
           <p>RoboLinks</p>
         </div>
-        <TopRight />
+
+        {session.data ? (<TopRight />) : (
+          <button
+          onClick={() => void signIn()}
+          className="rounded-md bg-gray-700 px-3 py-2 text-sm font-medium text-gray-300 duration-100 hover:bg-slate-600 hover:text-white"
+        >
+          Sign in
+        </button>
+
+        )}
+        
       </div>
       
       {/* <Flex

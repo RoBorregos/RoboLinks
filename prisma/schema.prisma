@@ -9,7 +9,7 @@ datasource db {
 
 model Link {
   idLink      Int        @id @default(autoincrement())
-  idUser      Int
+  idUser      String
   title       String
   description String?
   url         String     @db.Text
@@ -17,7 +17,7 @@ model Link {
   createdAt   DateTime   @default(now())
   updatedAt   DateTime
   short       String     @unique
-  User        User       @relation(fields: [idUser], references: [idUser])
+  User        User       @relation(fields: [idUser], references: [id])
   LinkTags    LinkTags[]
   Visit       Visit[]
 
@@ -42,14 +42,30 @@ model Tag {
   LinkTags LinkTags[]
 }
 
+// model User {
+//   idUser    Int      @id @default(autoincrement())
+//   username  String   @unique
+//   email     String   @unique
+//   password  String?
+//   picUrl    String?
+//   createdAt DateTime @default(now())
+//   Link      Link[]
+// }
+
 model User {
-  idUser    Int      @id @default(autoincrement())
-  username  String   @unique
-  email     String   @unique
-  password  String?
+  id            String          @id @default(cuid())
+  name          String?
+  username      String?         @unique
+  email         String?         @unique
+  emailVerified DateTime?
+  image         String?
+  role          String          @default("user")
+  Session       Session[]
+  Account       Account?
+  Link      Link[]
   picUrl    String?
   createdAt DateTime @default(now())
-  Link      Link[]
+  updatedAt DateTime @updatedAt
 }
 
 model Visit {
@@ -61,4 +77,49 @@ model Visit {
   Link      Link     @relation(fields: [idLink], references: [idLink])
 
   @@index([idLink], map: "Visit_idLink_fkey")
+}
+
+model Account {
+  id                       String  @id @default(cuid())
+  userId                   String  @unique
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String? @db.Text
+  access_token             String? @db.Text
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String? @db.Text
+  session_state            String?
+  refresh_token_expires_in Int?
+  user                     User?   @relation(fields: [userId], references: [id])
+ 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+ 
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+ 
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id])
+  roles        String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+ 
+  @@index([userId])
+}
+ 
+model VerificationToken {
+  id         String   @id @default(cuid())
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
 }
