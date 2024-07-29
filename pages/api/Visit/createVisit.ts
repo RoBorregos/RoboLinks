@@ -4,7 +4,9 @@ import client from "../../../client";
 
 const createVisit = async (req: NextApiRequest, res: NextApiResponse) => {
   const { idLink, ip } = req.body;
-  const { data } = await client.get("https://geolocation-db.com/json/" + ip);
+  // const { data } = await client.get("https://geolocation-db.com/json/" + ip);
+  const data = { country_name: "Unknown" };
+  
   if (!idLink) {
     res.status(400).json({ error: "Missing parameters" });
     return;
